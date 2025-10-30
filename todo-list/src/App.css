@@ -1,42 +1,159 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
   padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#root {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.new-item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
-.card {
-  padding: 2em;
+.form-row label {
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #b0b0b0;
 }
 
-.read-the-docs {
-  color: #888;
+.form-row input {
+  outline: none;
+  border: 1px solid #404040;
+  background: #2d2d2d;
+  border-radius: 0.25em;
+  padding: 0.5em 0.75em;
+  color: white;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.form-row input:focus {
+  border: 1px solid #646cff;
+}
+
+.btn {
+  background: #646cff;
+  border: 1px solid #646cff;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  align-self: flex-start;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: #535bf2;
+}
+
+.btn.btn-danger {
+  background: #dc2626;
+  border: 1px solid #dc2626;
+  padding: 0.25em 0.75em;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.btn.btn-danger:hover,
+.btn.btn-danger:focus-visible {
+  background: #b91c1c;
+}
+
+.header {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  margin-left: 1rem;
+  list-style: none;
+}
+
+.list li:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.list li label {
+  display: flex;
+  gap: 0.75rem;
+  cursor: pointer;
+  align-items: center;
+  flex: 1;
+}
+
+.list li:has(input:checked) label {
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
+.list li input {
+  outline: none;
+  width: 0;
+  height: 0;
+  appearance: none;
+  pointer-events: none;
+  position: absolute;
+}
+
+.list li label::before {
+  content: "";
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: #404040;
+  border-radius: 0.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.list li label:hover::before {
+  background: #4a5568;
+}
+
+.list li:has(input:checked) label::before {
+  content: "✔";
+  background: #646cff;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.list li:has(input:focus-visible) label::before {
+  outline: 2px solid #646cff;
+  outline-offset: 2px;
 }
