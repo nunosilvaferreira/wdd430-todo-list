@@ -15,15 +15,16 @@ export default function TodoForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="new-item-form">
       <div className="form-row">
-        <label htmlFor="item">New Item</label>
+        <label htmlFor="item">Nova Tarefa</label>
         <input
           value={item}
           onChange={e => setItem(e.target.value)}
           type="text"
           id="item"
+          placeholder="O que precisas fazer?"
         />
       </div>
-      <button className="btn">Add</button>
+      <button className="btn">Adicionar</button>
     </form>
   )
 }

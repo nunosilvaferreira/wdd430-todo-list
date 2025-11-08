@@ -13,7 +13,7 @@ export default function TodoItem({ id, title, completed, toggleTodo, deleteTodo 
         className="btn btn-danger"
         onClick={() => deleteTodo(id)}
       >
-        Delete
+        Eliminar
       </button>
     </li>
   )
