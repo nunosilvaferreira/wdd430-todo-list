@@ -1,8 +1,6 @@
 import TodoItem from './TodoItem'
-import { useLanguage } from './contexts/LanguageContext'
 
-export default function TodoList({ todos, toggleTodo, deleteTodo }) {
-  const { t } = useLanguage();
+export default function TodoList({ todos, toggleTodo, deleteTodo, t }) {
   const completedTodos = todos.filter(todo => todo.completed)
   const pendingTodos = todos.filter(todo => !todo.completed)
 
@@ -24,6 +22,7 @@ export default function TodoList({ todos, toggleTodo, deleteTodo }) {
                     {...todo} 
                     toggleTodo={toggleTodo}
                     deleteTodo={deleteTodo}
+                    t={t}
                   />
                 ))}
               </ul>
@@ -40,6 +39,7 @@ export default function TodoList({ todos, toggleTodo, deleteTodo }) {
                     {...todo} 
                     toggleTodo={toggleTodo}
                     deleteTodo={deleteTodo}
+                    t={t}
                   />
                 ))}
               </ul>

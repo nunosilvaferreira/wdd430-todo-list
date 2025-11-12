@@ -1,8 +1,4 @@
-import { useLanguage } from './contexts/LanguageContext'
-
-export default function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
-  const { t } = useLanguage();
-
+export default function TodoItem({ id, title, completed, toggleTodo, deleteTodo, t }) {
   return (
     <li>
       <label>
@@ -21,3 +17,4 @@ export default function TodoItem({ id, title, completed, toggleTodo, deleteTodo 
       </button>
     </li>
   )
+}

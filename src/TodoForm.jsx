@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import { useLanguage } from './contexts/LanguageContext'
 
-export default function TodoForm({ onSubmit }) {
-  const { t } = useLanguage();
+export default function TodoForm({ onSubmit, t }) {
   const [item, setItem] = useState("")
 
   function handleSubmit(e) {
