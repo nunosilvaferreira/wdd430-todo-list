@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useLanguage } from './contexts/LanguageContext'
 
 export default function TodoForm({ onSubmit }) {
+  const { t } = useLanguage();
   const [item, setItem] = useState("")
 
   function handleSubmit(e) {
@@ -15,16 +17,16 @@ export default function TodoForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="new-item-form">
       <div className="form-row">
-        <label htmlFor="item">Nova Tarefa</label>
+        <label htmlFor="item">{t('newTask')}</label>
         <input
           value={item}
           onChange={e => setItem(e.target.value)}
           type="text"
           id="item"
-          placeholder="O que precisas fazer?"
+          placeholder={t('whatNeedsDone')}
         />
       </div>
-      <button className="btn">Adicionar</button>
+      <button className="btn">{t('add')}</button>
     </form>
   )
 }

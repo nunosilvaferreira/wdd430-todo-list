@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import ListManager from './ListManager'
+import LanguageSwitcher from './LanguageSwitcher'
 import './App.css'
+import { useLanguage } from './contexts/LanguageContext'
 
 export default function App() {
+  const { t } = useLanguage();
   const [lists, setLists] = useState(() => {
     const localValue = localStorage.getItem("TODOLISTS")
     if (localValue == null) return [
       { 
         id: crypto.randomUUID(), 
-        name: "Principal", 
+        name: t('mainList', {defaultValue: "Principal"}), 
         todos: [],
         createdAt: new Date().toISOString()
       }
@@ -95,7 +98,7 @@ export default function App() {
 
   function deleteList(id) {
     if (lists.length <= 1) {
-      alert("Não podes eliminar a última lista!")
+      alert(t('deleteLastList'))
       return
     }
 
@@ -123,6 +126,10 @@ export default function App() {
 
   return (
     <>
+      <div className="app-header">
+        <LanguageSwitcher />
+      </div>
+      
       <ListManager 
         lists={lists}
         currentListId={currentListId}
@@ -133,9 +140,9 @@ export default function App() {
       />
       
       <div className="current-list-header">
-        <h1 className="header">{currentList?.name || "Todo List"}</h1>
+        <h1 className="header">{currentList?.name || t('todoList')}</h1>
         <span className="list-stats">
-          {currentList?.todos.filter(t => !t.completed).length} pendentes
+          {t('pendingCount', { count: currentList?.todos.filter(t => !t.completed).length })}
         </span>
       </div>
       

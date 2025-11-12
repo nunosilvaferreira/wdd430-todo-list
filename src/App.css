@@ -357,3 +357,25 @@ body {
     width: 100%;
   }
 }
+
+/* Language Switcher */
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.btn-language {
+  background: #404040;
+  border: 1px solid #595959;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  font-size: 0.9rem;
+  min-height: 36px;
+}
+
+.btn-language:hover {
+  background: #4a5568;
+}

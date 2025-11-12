@@ -1,4 +1,8 @@
+import { useLanguage } from './contexts/LanguageContext'
+
 export default function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
+  const { t } = useLanguage();
+
   return (
     <li>
       <label>
@@ -13,8 +17,7 @@ export default function TodoItem({ id, title, completed, toggleTodo, deleteTodo 
         className="btn btn-danger"
         onClick={() => deleteTodo(id)}
       >
-        Eliminar
+        {t('deleteTask')}
       </button>
     </li>
   )
-}

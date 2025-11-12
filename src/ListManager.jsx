@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLanguage } from './contexts/LanguageContext'
 
 export default function ListManager({ 
   lists, 
@@ -8,6 +9,7 @@ export default function ListManager({
   onDeleteList, 
   onRenameList 
 }) {
+  const { t } = useLanguage();
   const [newListName, setNewListName] = useState("")
   const [editingListId, setEditingListId] = useState(null)
   const [editListName, setEditListName] = useState("")
@@ -41,14 +43,14 @@ export default function ListManager({
   return (
     <div className="list-manager">
       <div className="lists-section">
-        <h3>As Minhas Listas</h3>
+        <h3>{t('myLists')}</h3>
         
         <form onSubmit={handleAddList} className="add-list-form">
           <input
             type="text"
             value={newListName}
             onChange={(e) => setNewListName(e.target.value)}
-            placeholder="Nova lista..."
+            placeholder={t('newList')}
             className="list-input"
           />
           <button type="submit" className="btn btn-small">+</button>
@@ -93,7 +95,7 @@ export default function ListManager({
                     <button 
                       onClick={() => startEditing(list)}
                       className="btn-icon"
-                      title="Renomear"
+                      title={t('rename')}
                     >
                       ✏️
                     </button>
@@ -101,7 +103,7 @@ export default function ListManager({
                       <button 
                         onClick={() => onDeleteList(list.id)}
                         className="btn-icon btn-danger"
-                        title="Eliminar lista"
+                        title={t('deleteList')}
                       >
                         🗑️
                       </button>
