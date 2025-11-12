@@ -1,0 +1,2 @@
+# Na pasta do teu projeto
+echo "" > public/.nojekyll
