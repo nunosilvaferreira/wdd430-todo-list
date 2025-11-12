@@ -41,7 +41,13 @@ const translations = {
 
 export default function App() {
   const [language, setLanguage] = useState(() => {
-    return localStorage.getItem('appLanguage') || 'portuguese'
+    const saved = localStorage.getItem('appLanguage');
+    // Fallback para detectar idioma do navegador se não houver salvo
+    if (!saved) {
+      const browserLang = navigator.language || navigator.userLanguage;
+      return browserLang.startsWith('pt') ? 'portuguese' : 'english';
+    }
+    return saved;
   })
   
   const [lists, setLists] = useState(() => {
@@ -68,6 +74,12 @@ export default function App() {
     localStorage.setItem("CURRENT_LIST", currentListId)
   }, [lists, currentListId])
 
+  // Debug para verificar se as traduções estão carregando
+  useEffect(() => {
+    console.log('Current language:', language);
+    console.log('Available translations:', Object.keys(translations));
+  }, [language])
+
   // Função de tradução
   const t = (key, params = {}) => {
     let text = translations[language][key] || key
@@ -81,6 +93,17 @@ export default function App() {
     const newLanguage = language === 'portuguese' ? 'english' : 'portuguese'
     setLanguage(newLanguage)
     localStorage.setItem('appLanguage', newLanguage)
+    
+    // Atualizar o nome da lista principal quando mudar o idioma
+    setLists(currentLists => {
+      return currentLists.map(list => {
+        if (list.name === translations[language].mainList || 
+            list.name === translations[newLanguage].mainList) {
+          return { ...list, name: translations[newLanguage].mainList }
+        }
+        return list
+      })
+    })
   }
 
   const currentList = lists.find(list => list.id === currentListId) || lists[0]
